@@ -9,9 +9,10 @@ contract Ghazal{
     mapping(address => uint) internal refunds;
 
 //************************************************************************************************************************//
-    //Each domain will hvae a zonefile struct in which the domain owner adds the domain name associated resource records.
-    // for now we only include the IP address.
+    //Each domain will hvae a zonefile struct in which the domain owner adds the hash of his DNS zone file plus an IP address of the server where the zone file is.
+    //So that the hash would be easily verifiable.
     struct ZoneFileStruct{
+       bytes32 Zone_Hash;
        string IP_Address;
     }
 //************************************************************************************************************************//
@@ -103,6 +104,7 @@ contract Ghazal{
     {
         DomainName = stringToBytes32(_DomainName);
         //Domains[DomainName].DNSHash = _DNSHash;
+        Domains[DomainName].ZoneFile.Zone_Hash = _Zone_Hash;
         Domains[DomainName].ZoneFile.IP_Address = _IP_Address;
         if (Domains[DomainName].state == States.Registered) {Domains[DomainName].state = States.ZoneFileEntered;}//if the domain is in the registered state, it transitions to DNSHashEntered.
         if (Domains[DomainName].state == States.TLSKeyEntered) {Domains[DomainName].state = States.TLSKey_And_ZoneFileEntered;}//if the domain contains the TLSKey, it transitions to TLSKey_And_DNSHashEntered.
@@ -113,6 +115,7 @@ contract Ghazal{
     function Add_TLSKey_AND_Zonefile (string _DomainName,bytes32 _TLSKey, bytes32 _Zone_Hash, string _IP_Address)  public CheckDomainExpiry (stringToBytes32(_DomainName)) Not_AtStage(stringToBytes32(_DomainName),States.Unregistered,States.Expired) OnlyOwner(stringToBytes32(_DomainName))
     {
         DomainName = stringToBytes32(_DomainName);
+        Domains[DomainName].ZoneFile.Zone_Hash = _Zone_Hash;
         Domains[DomainName].ZoneFile.IP_Address = _IP_Address;
         Domains[DomainName].TLSKeys.push(_TLSKey);
         Domains[DomainName].state = States.TLSKey_And_ZoneFileEntered;
@@ -122,13 +125,13 @@ contract Ghazal{
     //1- DomainOwner can only transfer the domain name. To do so, he wipes the associated DNS Hash and TLS Key by supplying them with zero.
     //2-  DomainOwner can transfer the domain name in addition to the corresponding certificate and and/or DNS Hash. This is done by supplying these arguments with their previous values.
     //Note that the Domain State and Registration_Time will not change and remain the same .
-    function Transfer_Domain (string _DomainName, address _Reciever,bytes32 _TLSKey, string _IP_Address) public CheckDomainExpiry (stringToBytes32(_DomainName)) Not_AtStage(stringToBytes32(_DomainName),States.Unregistered,States.Expired) OnlyOwner(stringToBytes32(_DomainName))
+    function Transfer_Domain (string _DomainName, address _Reciever,bytes32 _TLSKey, bytes32 _Zone_Hash, string _IP_Address) public CheckDomainExpiry (stringToBytes32(_DomainName)) Not_AtStage(stringToBytes32(_DomainName),States.Unregistered,States.Expired) OnlyOwner(stringToBytes32(_DomainName))
     {
         DomainName = stringToBytes32(_DomainName);
         Domains[DomainName].DomainOwner = _Reciever;
-        if (_TLSKey == 0 && stringToBytes32(_IP_Address) != 0) { Wipe_TLSKeys(DomainName); }
-        if (stringToBytes32(_IP_Address) == 0 && _TLSKey != 0 ) {  Wipe_IP_address(DomainName); }
-        if (stringToBytes32(_IP_Address) == 0 && _TLSKey == 0 ) { Wipe_TLSKeys_and_IP_address(DomainName); }
+        if (_TLSKey == 0 && _Zone_Hash != 0 && stringToBytes32(_IP_Address) != 0) { Wipe_TLSKeys(DomainName); }
+        if (_Zone_Hash == 0 && stringToBytes32(_IP_Address) == 0 && _TLSKey != 0 ) { Wipe_Zone_Hash(DomainName); }
+        if (_Zone_Hash == 0 && stringToBytes32(_IP_Address) == 0 && _TLSKey == 0 ) { Wipe_TLSKeys_and_Zone_Hash(DomainName); }
     }
 //************************************************************************************************************************//
     function Wipe_TLSKeys (bytes32 _DomainName) internal{
@@ -136,13 +139,15 @@ contract Ghazal{
       if (Domains[_DomainName].state == States.TLSKey_And_ZoneFileEntered) {Domains[_DomainName].state = States.ZoneFileEntered;}
     }
 //************************************************************************************************************************//
-    function Wipe_IP_address (bytes32 _DomainName) internal{
+    function Wipe_Zone_Hash (bytes32 _DomainName) internal{
       delete Domains[_DomainName].ZoneFile.IP_Address;
+      delete Domains[_DomainName].ZoneFile.Zone_Hash;
       if (Domains[_DomainName].state == States.TLSKey_And_ZoneFileEntered) {Domains[_DomainName].state = States.TLSKeyEntered;}
     }
 //************************************************************************************************************************//
-    function Wipe_TLSKeys_and_IP_address (bytes32 _DomainName) internal{
+    function Wipe_TLSKeys_and_Zone_Hash (bytes32 _DomainName) internal{
       delete Domains[_DomainName].ZoneFile.IP_Address;
+      delete Domains[_DomainName].ZoneFile.Zone_Hash;
       delete Domains[_DomainName].TLSKeys;
       Domains[_DomainName].state = States.Registered;
     }
@@ -178,7 +183,7 @@ contract Ghazal{
 //************************************************************************************************************************//
     function Set_Auction_Result (bytes32 _DomainName) internal
     {
-      Wipe_TLSKeys_and_IP_address(_DomainName);
+      Wipe_TLSKeys_and_Zone_Hash(_DomainName);
       Domains[_DomainName].DomainOwner = msg.sender;
     }
 
@@ -365,9 +370,9 @@ contract Ghazal_With_Auction is Ghazal{
 
     }
 //********************************************************************************************************************
-    function Transfer_Domain (string _DomainName, address _Reciever, bytes32 _TLSKey, string _IP_Address) public CheckAuctionStage(stringToBytes32(_DomainName)) ToBidAuctionAtStage(stringToBytes32(_DomainName),Stages.Ended) OnlyOwner(stringToBytes32(_DomainName))
+    function Transfer_Domain (string _DomainName, address _Reciever, bytes32 _TLSKey, bytes32 _Zone_Hash, string _IP_Address) public CheckAuctionStage(stringToBytes32(_DomainName)) ToBidAuctionAtStage(stringToBytes32(_DomainName),Stages.Ended) OnlyOwner(stringToBytes32(_DomainName))
     {
-        super.Transfer_Domain(_DomainName, _Reciever, _TLSKey, _IP_Address);
+        super.Transfer_Domain(_DomainName, _Reciever, _TLSKey, _Zone_Hash, _IP_Address);
     }
 //********************************************************************************************************************
 }
