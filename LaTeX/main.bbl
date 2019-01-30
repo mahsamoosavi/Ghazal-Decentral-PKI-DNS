@@ -1,0 +1,166 @@
+\begin{thebibliography}{10}
+
+\bibitem{Ethereum41:online}
+Ethereum development tutorial · ethereum/wiki wiki.
+\newblock
+  \url{https://github.com/ethereum/wiki/wiki/Ethereum-Development-Tutorial}.
+\newblock (Accessed on 07/12/2017).
+
+\bibitem{giteffor4:online}
+git.eff.org git - sovereign-keys.git/blob - sovereign-key-design.txt.
+\newblock
+  \url{https://git.eff.org/?p=sovereign-keys.git;a=blob;f=sovereign-key-design.txt;hb=HEAD}.
+\newblock (Accessed on 01/10/2018).
+
+\bibitem{Home41:online}
+Home.
+\newblock \url{http://www.ethereum-alarm-clock.com/}.
+\newblock (Accessed on 12/29/2017).
+
+\bibitem{al2017scpki}
+M.~Al-Bassam.
+\newblock Scpki: A smart contract-based pki and identity system.
+\newblock In {\em Proceedings of the ACM Workshop on Blockchain,
+  Cryptocurrencies and Contracts}, pages 35--40. ACM, 2017.
+
+\bibitem{ali2016blockstack}
+M.~Ali, J.~C. Nelson, R.~Shea, and M.~J. Freedman.
+\newblock Blockstack: A global naming and storage system secured by
+  blockchains.
+\newblock In {\em USENIX Annual Technical Conference}, pages 181--194, 2016.
+
+\bibitem{axon2016pb}
+L.~Axon and M.~Goldsmith.
+\newblock Pb-pki: a privacy-aware blockchain-based pki.
+\newblock 2016.
+
+\bibitem{basin2014arpki}
+D.~Basin, C.~Cremers, T.~H.-J. Kim, A.~Perrig, R.~Sasse, and P.~Szalachowski.
+\newblock Arpki: Attack resilient public-key infrastructure.
+\newblock In {\em Proceedings of the 2014 ACM SIGSAC Conference on Computer and
+  Communications Security}, pages 382--393. ACM, 2014.
+
+\bibitem{bonneau2016ethiks}
+J.~Bonneau.
+\newblock Ethiks: Using ethereum to audit a coniks key transparency log.
+\newblock In {\em International Conference on Financial Cryptography and Data
+  Security}, pages 95--105. Springer, 2016.
+
+\bibitem{buterin2014next}
+V.~Buterin et~al.
+\newblock A next-generation smart contract and decentralized application
+  platform.
+\newblock {\em white paper}, 2014.
+
+\bibitem{chase2016transparency}
+M.~Chase and S.~Meiklejohn.
+\newblock Transparency overlays and applications.
+\newblock In {\em Proceedings of the 2016 ACM SIGSAC Conference on Computer and
+  Communications Security}, pages 168--179. ACM, 2016.
+
+\bibitem{CO13}
+J.~Clark and P.~v. Oorschot.
+\newblock {SSL} and {HTTPS}: Revisiting past challenges and evaluating
+  certificate trust model enhancements.
+\newblock In {\em IEEE S\&P}, 2013.
+
+\bibitem{DKBH13}
+Z.~Durumeric, J.~Kasten, M.~Bailey, and J.~A. Halderman.
+\newblock Analysis of the https certificate ecosystem.
+\newblock In {\em IMC}, 2013.
+
+\bibitem{fromknecht2014certcoin}
+C.~Fromknecht, D.~Velicanu, and S.~Yakoubov.
+\newblock Certcoin: A namecoin based decentralized authentication system 6.857
+  class project.
+\newblock 2014.
+
+\bibitem{hardjonoverifiable}
+T.~Hardjono and A.~S. Pentland.
+\newblock Verifiable anonymous identities and access control in permissioned
+  blockchains.
+
+\bibitem{HBKC11}
+R.~Holz, L.~Braun, N.~Kammenhuber, and G.~Carle.
+\newblock The {SSL} landscape: A thorough analysis of the {X.509} {PKI} using
+  active and passive measurements.
+\newblock In {\em IMC}, 2011.
+
+\bibitem{Kalodner2015}
+H.~A. Kalodner, M.~Carlsten, P.~Ellenbogen, J.~Bonneau, and A.~Narayanan.
+\newblock An empirical study of namecoin and lessons for decentralized
+  namespace design.
+\newblock In {\em WEIS}, 2015.
+
+\bibitem{laurie2014certificate}
+B.~Laurie.
+\newblock Certificate transparency.
+\newblock {\em Queue}, 12(8):10, 2014.
+
+\bibitem{liu2016all}
+D.~Liu, S.~Hao, and H.~Wang.
+\newblock All your dns records point to us: Understanding the security threats
+  of dangling dns records.
+\newblock In {\em Proceedings of the 2016 ACM SIGSAC Conference on Computer and
+  Communications Security}, pages 1414--1425. ACM, 2016.
+
+\bibitem{luu2016making}
+L.~Luu, D.-H. Chu, H.~Olickel, P.~Saxena, and A.~Hobor.
+\newblock Making smart contracts smarter.
+\newblock In {\em Proceedings of the 2016 ACM SIGSAC Conference on Computer and
+  Communications Security}, pages 254--269. ACM, 2016.
+
+\bibitem{Mar11}
+M.~Marlinspike.
+\newblock {SSL} and the future of authenticity.
+\newblock In {\em Black Hat USA}, 2011.
+
+\bibitem{matsumoto2016ikp}
+S.~Matsumoto and R.~M. Reischuk.
+\newblock Ikp: Turning a pki around with blockchains.
+\newblock {\em IACR Cryptology ePrint Archive}, 2016:1018, 2016.
+
+\bibitem{melara2015coniks}
+M.~S. Melara, A.~Blankstein, J.~Bonneau, E.~W. Felten, and M.~J. Freedman.
+\newblock Coniks: Bringing key transparency to end users.
+\newblock In {\em USENIX Security Symposium}, pages 383--398, 2015.
+
+\bibitem{myers1998revocatoin}
+M.~Myers.
+\newblock Revocatoin: Options and challenges.
+\newblock In {\em Financial Cryptography}, pages 165--171. Springer, 1998.
+
+\bibitem{nakamoto2008bitcoin}
+S.~Nakamoto.
+\newblock Bitcoin: A peer-to-peer electronic cash system, 2008.
+
+\bibitem{syta2016keeping}
+E.~Syta, I.~Tamas, D.~Visher, D.~I. Wolinsky, P.~Jovanovic, L.~Gasser,
+  N.~Gailly, I.~Khoffi, and B.~Ford.
+\newblock Keeping authorities" honest or bust" with decentralized witness
+  cosigning.
+\newblock In {\em Security and Privacy (SP), 2016 IEEE Symposium on}, pages
+  526--545. Ieee, 2016.
+
+\bibitem{szabo1997formalizing}
+N.~Szabo.
+\newblock Formalizing and securing relationships on public networks.
+\newblock {\em First Monday}, 2(9), 1997.
+
+\bibitem{topalovic2012towards}
+E.~Topalovic, B.~Saeta, L.-S. Huang, C.~Jackson, and D.~Boneh.
+\newblock Towards short-lived certificates.
+\newblock {\em Web 2.0 Security and Privacy}, 2012.
+
+\bibitem{WAP08}
+D.~Wendlandt, D.~G. Andersen, and A.~Perrig.
+\newblock Perspectives: Improving {SSH}-style host authentication with
+  multi-path probing.
+\newblock In {\em USENIX Annual Tech}, 2008.
+
+\bibitem{wood2014ethereum}
+G.~Wood.
+\newblock Ethereum: A secure decentralised generalised transaction ledger.
+\newblock {\em Ethereum Project Yellow Paper}, 151, 2014.
+
+\end{thebibliography}

@@ -1,0 +1,12 @@
+% !TEX root = ../main.tex
+%-------------------Fancy Table ----------------------%
+
+% = = = Rotated Table Entry \headrow
+
+\usepackage{adjustbox}
+\newcommand{\headrow}[1]{\multicolumn{1}{c}{\adjustbox{angle=45,lap=\width-0.5em}{#1}}}
+
+% = = = Table bullets: \full and \prt (full and part)
+
+\newcommand{\full}{$\bullet$}
+\newcommand{\prt}{$\circ$}
